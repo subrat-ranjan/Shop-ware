@@ -1,4 +1,5 @@
 import JWT from 'jsonwebtoken';
+import userModel from '../models/userModel.js';
 //Protected Routes token base
 export const requireSignIn = (req, res, next) => {
     try {
@@ -12,15 +13,16 @@ export const requireSignIn = (req, res, next) => {
 //admin access
 export const isAdmin = async (req, res, next) => {
     try {
-        const user = await userModel.findById(req.user._id)
+        const user = await userModel.findById(req.user._id);
         if (user.role !== 1) {
             return res.status(401).send({
                 success: false,
-                message: "UnAutnorized Access"
+                message: "UnAuthorized Access",
             });
         } else {
             next();
         }
+
     } catch (error) {
         console.log(error);
         res.status(401).send({
