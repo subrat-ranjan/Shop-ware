@@ -1,7 +1,7 @@
 import JWT from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 //Protected Routes token base
-export const requireSignIn = (req, res, next) => {
+export const requireSignIn = async (req, res, next) => {
     try {
         const decode = JWT.verify(req.headers.authorization, process.env.JWT_SECRETS);
         req.user = decode;
@@ -9,7 +9,7 @@ export const requireSignIn = (req, res, next) => {
     } catch (error) {
         console.log(error)
     }
-}
+};
 //admin access
 export const isAdmin = async (req, res, next) => {
     try {
