@@ -162,3 +162,18 @@ export const testController = (req, res) => {
         res.send({ error })
     }
 }
+
+
+//update profile
+export const updateProfileController = async (req, res) => {
+    try {
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Something went wrong',
+            error
+        })
+    }
+}

@@ -21,6 +21,9 @@ import Products from './pages/Admin/Products';
 import UpdateProduct from './pages/Admin/UpdateProduct';
 import SearchPage from './pages/SearchPage';
 import ProductDetails from './pages/ProductDetails';
+import Categories from './pages/Categories';
+import CategoryProducts from './pages/CategoryProducts';
+import CartPage from './pages/CartPage';
 
 // import { ToastContainer } from 'react-toastify';
 function App() {
@@ -29,6 +32,9 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/product/:slug' element={<ProductDetails />} />
+        <Route path='/categories' element={<Categories />} />
+        <Route path='/cart' element={<CartPage />} />
+        <Route path='/category/:slug' element={<CategoryProducts />} />
         <Route path='/search' element={<SearchPage />} />
         {/* //private route */}
         <Route path='/dashboard' element={<PrivateRoute />}>

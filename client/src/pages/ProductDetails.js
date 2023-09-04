@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout/Layout'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+
 
 
 const ProductDetails = () => {
+    const navigate = useNavigate()
     const params = useParams()
     const [product, setProduct] = useState({})
     const [relatedProducts, setRelatedProducts] = useState([])
@@ -69,7 +71,7 @@ const ProductDetails = () => {
                 <div className="d-flex flex-wrap  ">
 
                     {relatedProducts?.map((p) => (
-                        <div className="card m-2 " key={p._id} style={{ width: "18rem" }} >
+                        <div className="card m-2 " key={p._id}  >
 
                             <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
 
@@ -77,6 +79,8 @@ const ProductDetails = () => {
                                 <h5 className='card-title '>{p.name}</h5>
                                 <p className='card-text'>{p.description.substring(0, 30)}...</p>
                                 <p className='card-text'> $ {p.price}</p>
+                                <button className='btn btn-primary ms-1' onClick={() => navigate(`/product/${p.slug}`)}> More Details
+                                </button>
 
                                 <button className='btn btn-secondary ms-2'>ADD TO CART
                                 </button>
