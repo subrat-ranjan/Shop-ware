@@ -15,7 +15,6 @@ const AdminMenu = () => {
                 </div>
             </div>
 
-
         </>
     )
 }

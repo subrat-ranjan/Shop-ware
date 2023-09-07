@@ -30,7 +30,20 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, password, phone, address });
+            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/auth/profile`, { name, email, password, phone, address });
+            if (data?.error) {
+                toast.error(data.error)
+            } else {
+                setAuth({
+                    ...auth,
+                    user: data?.updatedUser,
+                })
+                let ls = localStorage.getItem("auth")
+                ls = JSON.parse(ls);
+                ls.user = data.updatedUser;
+                localStorage.setItem("auth", JSON.stringify(ls));
+                toast.success("Profile Updated Successfully.")
+            }
 
         } catch (error) {
             console.log(error);
@@ -55,24 +68,24 @@ const Profile = () => {
                                     <h2 align="center"> USER PROFILE
                                     </h2>
 
-                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="name" placeholder='Enter your name:' required />
+                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="name" placeholder='Enter your name:' />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" placeholder='Enter your E-mail:' required disabled />
+                                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" placeholder='Enter your E-mail:' disabled />
                                 </div>
 
                                 <div className="mb-3">
 
-                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="password" placeholder='Enter password' required />
+                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="password" placeholder='Enter password' />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="phone" placeholder='Enter Phone no' required />
+                                    <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="phone" placeholder='Enter Phone no' />
                                 </div>
                                 <div className="mb-3">
 
-                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="address" placeholder='Enter your address' required />
+                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="address" placeholder='Enter your address' />
                                 </div>
 
 

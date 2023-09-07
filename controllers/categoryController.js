@@ -8,7 +8,8 @@ export const createCategoryController = async (req, res) => {
         if (!name) {
             return res.status(401).send({ message: "Name is required" })
         }
-        const existingCategory = await categoryModel.findOne({ name })
+        // const existingCategory = await categoryModel.findOne({ name })
+        const existingCategory = await categoryModel.findOne({ slug: slugify(name) });
         if (existingCategory) {
             res.status(200).send({
                 success: false,
