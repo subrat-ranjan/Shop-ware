@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import './register.css'
 import { useNavigate } from 'react-router-dom'
-
+import "../../styles/AuthStyle.css"
 const Register = () => {
     const navigate = useNavigate()
     const [name, setName] = useState("");

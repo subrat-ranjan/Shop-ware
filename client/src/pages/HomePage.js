@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast'
 import { Prices } from '../components/Prices'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/cart'
+import "../styles/Homepage.css";
 
 
 // import { Link } from 'react-router-dom'
@@ -121,8 +122,8 @@ const HomePage = () => {
     return (
         <Layout title={" All Products -Shop_Ware"}>
 
-            <div className="container-fluid row mt-3 ">
-                <div className="col-md-3 ">
+            <div className="container-fluid row mt-3 home-page">
+                <div className="col-md-3 filters">
                     <h4 className='text-center'>
                         Filter By Category
                     </h4>
@@ -163,19 +164,36 @@ const HomePage = () => {
 
                                 <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
 
-                                <div className="card-body ">
-                                    <h5 className='card-title '>{p.name}</h5>
-                                    <p className='card-text'>{p.description.substring(0, 30)}...</p>
-                                    <p className='card-text'> $ {p.price}</p>
-                                    <button className='btn btn-primary ms-1' onClick={() => navigate(`/product/${p.slug}`)}> More Details
-                                    </button>
-                                    <button className='btn btn-secondary ms-2'
-                                        onClick={() => {
-                                            setCart([...cart, p])
-                                            localStorage.setItem('cart', JSON.stringify([...cart, p]))
-                                            toast.success("Item added to cart")
-                                        }}>ADD TO CART
-                                    </button>
+                                <div className="card-body">
+                                    <div className="card-name-price">
+                                        <h5 className="card-title">{p.name}</h5>
+                                        <h5 className="card-title card-price">
+                                            {p.price.toLocaleString("en-US", {
+                                                style: "currency",
+                                                currency: "USD",
+                                            })}
+                                        </h5>
+                                    </div>
+                                    <p className="card-text ">
+                                        {p.description.substring(0, 60)}...
+                                    </p>
+                                    <div className="card-name-price">
+                                        <button
+                                            className="btn btn-info ms-1"
+                                            onClick={() => navigate(`/product/${p.slug}`)}
+                                        >
+                                            More Details
+                                        </button>
+                                        <button className='btn btn-secondary ms-2'
+                                            onClick={() => {
+                                                setCart([...cart, p])
+                                                localStorage.setItem('cart', JSON.stringify([...cart, p]))
+                                                toast.success("Item added to cart")
+                                            }}>ADD TO CART
+                                        </button>
+
+                                    </div>
+
                                 </div>
                             </div>
                         ))}

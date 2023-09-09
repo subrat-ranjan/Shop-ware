@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import './register.css'
 import { useNavigate } from 'react-router-dom'
+import "../../styles/AuthStyle.css"
 
 const Forgot = () => {
     const navigate = useNavigate();

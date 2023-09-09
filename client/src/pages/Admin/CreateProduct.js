@@ -72,7 +72,7 @@ const CreateProduct = () => {
                     <div className="col-md-9">
                         <h1>Create Product</h1>
                         <div className="m-1 w-75">
-                            <Select
+                            <Select optionLabelProp="children"
                                 bordered={false}
                                 placeholder="Select a Category"
                                 size='large'
@@ -84,7 +84,7 @@ const CreateProduct = () => {
                                 ))}
                             </Select>
                             <div className="mb-3">
-                                <label className='btn btn-outline-secondary col-md-12'>{photo ? photo.name : "Upload Photo"}
+                                <label aria-label='' className='btn btn-outline-secondary col-md-12'>{photo ? photo.name : "Upload Photo"}
                                     {/* //if you got photo then show name of the photo */}
                                     <input type="file" name="photo" accept="image/*" onChange={(e) => setPhoto(e.target.files[0])} hidden />
                                 </label>

@@ -2,6 +2,7 @@ import { hash } from "bcrypt";
 import { comparePassword, hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
 import JWT from "jsonwebtoken";
+import orderModel from "../models/orderModel.js";
 export const registerController = async (req, res) => {
     try {
         const { name, email, password, phone, address, answer } = req.body;
@@ -191,6 +192,54 @@ export const updateProfileController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: 'Something went wrong',
+            error
+        })
+    }
+}
+//orderss
+export const getOrdersController = async (req, res) => {
+    try {
+        const orders = await orderModel.find({ buyer: req.user._id }).populate(
+            "products", "-photo"
+        ).populate("buyer", "name")
+        res.json(orders)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: 'Error while getting orders.',
+            error
+        })
+    }
+}
+
+//get all oeders
+export const getAllOrdersController = async (req, res) => {
+    try {
+        const orders = await orderModel.find({}).populate("products", "-photo").populate("buyer", "name").sort({ createdAt: "-1" })
+        res.json(orders)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: 'Error while getting All orders.',
+            error
+        })
+    }
+}
+
+// Order status 
+export const orderStatusController = async (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { status } = req.body
+        const orders = await orderModel.findByIdAndUpdate(orderId, { status }, { new: true })
+        res.json(orders)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: 'Error while updating All status.',
             error
         })
     }
