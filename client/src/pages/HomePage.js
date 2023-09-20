@@ -121,6 +121,12 @@ const HomePage = () => {
 
     return (
         <Layout title={" All Products -Shop_Ware"}>
+            <img
+                src="/images/nanner1.jpg"
+                className="banner-img"
+                alt="bannerimage"
+                width={"100%"}
+            />
 
             <div className="container-fluid row mt-3 home-page">
                 <div className="col-md-3 filters">

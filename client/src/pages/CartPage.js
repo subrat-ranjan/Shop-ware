@@ -145,7 +145,7 @@ const CartPage = () => {
                             )}
                             <div className="mt-2">
                                 {
-                                    !clientToken || !auth?.token || !cart?.length ? ("") : (
+                                    !clientToken || !cart?.length ? ("") : (
                                         <>
                                             <DropIn
                                                 options={{
@@ -157,7 +157,7 @@ const CartPage = () => {
                                                 onInstance={(instance) => setInstance(instance)}
 
                                             />
-                                            <button className='btn btn-primary' onClick={handlePayment} disabled={!loading || !instance || !auth?.user?.adddress}>{loading ? "Processing..." : "Make Payment"}</button>
+                                            <button className='btn btn-primary' onClick={handlePayment} disabled={loading || !instance || !auth?.user?.address}>{loading ? "Processing..." : "Make Payment"}</button>
 
                                         </>
 
