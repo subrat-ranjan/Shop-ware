@@ -123,7 +123,7 @@ const HomePage = () => {
         <Layout title={" All Products -Shop_Ware"}>
             <img
                 src="/images/nanner1.jpg"
-                className="banner-img"
+                className="banner-img object-fit-cover"
                 alt="bannerimage"
                 width={"100%"}
             />

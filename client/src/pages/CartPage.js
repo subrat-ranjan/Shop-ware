@@ -11,7 +11,7 @@ import "../styles/CartStyle.css";
 
 const CartPage = () => {
     const navigate = useNavigate()
-    const [auth, setAuth] = useAuth()
+    const [auth] = useAuth()
     const [cart, setCart] = useCart()
     const [clientToken, setClientToken] = useState("");
     const [instance, setInstance] = useState("");
@@ -100,10 +100,10 @@ const CartPage = () => {
                             {cart?.map((p, i) => (
                                 <div className="row mb-2 p-3 card flex-row" key={i}>
                                     <div className="col-md-4 ">
-                                        <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} width="100%" height={"130px"} />
+                                        <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top mt-3' alt={p.name} width="100%" height={"130px"} />
 
                                     </div>
-                                    <div className="col-md-4">
+                                    <div className="col-md-4 mt-3">
                                         <p>{p.name}</p>
                                         <p>{p.description.substring(0, 30)}</p>
                                         <p>Price: {p.price}</p>
@@ -119,7 +119,8 @@ const CartPage = () => {
                             ))}
 
                         </div>
-                        <div className="col-md-4 cart-summary">
+
+                        <div className="col-md-4 cart-summary margin">
                             <h2>Cart Summary</h2>
                             <p>Total | CheckOut | Payment</p>
                             <hr />
@@ -157,7 +158,7 @@ const CartPage = () => {
                                                 onInstance={(instance) => setInstance(instance)}
 
                                             />
-                                            <button className='btn btn-primary' onClick={handlePayment} disabled={loading || !instance || !auth?.user?.address}>{loading ? "Processing..." : "Make Payment"}</button>
+                                            <button className='btn btn-primary mb-2' onClick={handlePayment} disabled={loading || !instance || !auth?.user?.address}>{loading ? "Processing..." : "Make Payment"}</button>
 
                                         </>
 

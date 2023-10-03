@@ -8,6 +8,32 @@ import { Link } from 'react-router-dom';
 
 const Products = () => {
     const [products, setProducts] = useState([])
+    const [total, setTotal] = useState(0)
+    const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+    const [categories, setCategories] = useState([])
+
+
+
+
+
+    //get all category
+    const getAllCategory = async () => {
+        try {
+            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/category/categories`)
+            if (data?.success) {
+                setCategories(data?.category)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went wrong in getting category")
+        }
+    };
+    //to get the category at initial time we have to use lifecycle method ie useEffect
+    useEffect(() => {
+        getAllCategory();
+        getTotal();
+    }, []);
 
     //get all products
     const getAllProducts = async () => {
@@ -23,6 +49,38 @@ const Products = () => {
     useEffect(() => {
         getAllProducts()
     }, [])
+
+    //gettotal count
+    const getTotal = async () => {
+        try {
+            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/Product/product-count`)
+            setTotal(data?.total)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        if (page === 1) return
+        loadMore()
+    }, [page])
+
+    //load more
+    const loadMore = async () => {
+        try {
+            setLoading(true)
+            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/Product/product-list/${page}`)
+            setLoading(false)
+            setProducts([...products, ...data?.products])
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
+    }
+
+
+
+
+
     return (
         <Layout>
             <div className="container-fluid m-3 p-3">
@@ -49,6 +107,11 @@ const Products = () => {
                                 </Link>
                             ))}
 
+                        </div>
+                        <div className='m-2 p-3'>
+                            {products && products.length < total && (
+                                <button onClick={(e) => { e.preventDefault(); setPage(page + 1) }} className='btn btn-warning'>{loading ? "Loading..." : "Loadmore"}</button>
+                            )}
                         </div>
                     </div>
                 </div>

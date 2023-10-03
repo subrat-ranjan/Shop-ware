@@ -94,3 +94,20 @@ border-bottom:  solid gray !important;
     text-decoration: none !important;
     color: black !important;
   }
+  @media (max-width: 768px) {
+  .margin{
+    margin-top: 190px;
+  }
+}
+
+  /* Default styling for all devices */
+.banner-img {
+  width: 100%;
+}
+
+/* Apply object-fit-cover on small devices */
+@media (max-width: 768px) {
+  .banner-img {
+      object-fit: contain;
+  }
+}
