@@ -96,7 +96,7 @@ border-bottom:  solid gray !important;
   }
   @media (max-width: 768px) {
   .margin{
-    margin-top: 190px;
+    margin-top: 140px;
   }
 }
 
@@ -110,4 +110,28 @@ border-bottom:  solid gray !important;
   .banner-img {
       object-fit: contain;
   }
+}
+@media only screen and (max-width: 600px) {
+  .media {
+   height: 90px;
+   width: 90px;
+  }
+  .cartpage{
+    display: flex;
+    /* flex-wrap: nowrap; */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+     }
+  .removebtn{
+  position: absolute;
+  margin-left: 15rem;
+  }
+  .details{
+  margin:20px;
+  position:absolute;
+  padding: 7rem;
+
+}
 }

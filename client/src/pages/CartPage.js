@@ -95,27 +95,29 @@ const CartPage = () => {
                     </div>
                 </div>
                 <div className="container">
-                    <div className="row">
+                    <div className="row ">
                         <div className="col-md-8 p-0 m-0">
                             {cart?.map((p, i) => (
-                                <div className="row mb-2 p-3 card flex-row" key={i}>
+
+                                <div className="row mb-2 p-3 card flex-row cartpage" key={i}>
                                     <div className="col-md-4 ">
-                                        <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top mt-3' alt={p.name} width="100%" height={"130px"} />
+                                        <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className=' media card-img-top mt-3' alt={p.name} width="100%" height={"130px"} />
 
                                     </div>
-                                    <div className="col-md-4 mt-3">
+
+                                    <div className="col-md-4 details mt-3">
                                         <p>{p.name}</p>
                                         <p>{p.description.substring(0, 30)}</p>
                                         <p>Price: {p.price}</p>
                                     </div>
-                                    <div className="col-md-4 cart-remove-btn">
-
-
-                                        <button className='btn btn-danger' onClick={() => removeCartItem(p._id)}>
+                                    <div className="col-md-4 cart-remove-btn removebtn">
+                                        <button className='btn btn-danger ' onClick={() => removeCartItem(p._id)}>
                                             Remove
                                         </button>
                                     </div>
                                 </div>
+
+
                             ))}
 
                         </div>
