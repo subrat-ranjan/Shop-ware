@@ -46,7 +46,7 @@ const CartPage = () => {
     //get Pyment gatway token
     const getToken = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/braintree/token`)
+            const { data } = await axios.get(`/api/v1/product/braintree/token`)
             setClientToken(data?.clientToken);
         } catch (error) {
             console.log(error)
@@ -101,7 +101,7 @@ const CartPage = () => {
 
                                 <div className="row mb-2 p-3 card flex-row cartpage" key={i}>
                                     <div className="col-md-4 ">
-                                        <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className=' media card-img-top mt-3' alt={p.name} width="100%" height={"130px"} />
+                                        <img src={`/api/v1/product//product-photo/${p._id}`} className=' media card-img-top mt-3' alt={p.name} width="100%" height={"130px"} />
 
                                     </div>
 

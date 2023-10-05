@@ -20,7 +20,7 @@ const Products = () => {
     //get all category
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/category/categories`)
+            const { data } = await axios.get(`/api/v1/category/categories`)
             if (data?.success) {
                 setCategories(data?.category)
             }
@@ -38,7 +38,7 @@ const Products = () => {
     //get all products
     const getAllProducts = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/Product/get-product`)
+            const { data } = await axios.get(`/api/v1/Product/get-product`)
             setProducts(data.products)
         } catch (error) {
             console.log(error)
@@ -53,7 +53,7 @@ const Products = () => {
     //gettotal count
     const getTotal = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/Product/product-count`)
+            const { data } = await axios.get(`/api/v1/Product/product-count`)
             setTotal(data?.total)
         } catch (error) {
             console.log(error)
@@ -68,7 +68,7 @@ const Products = () => {
     const loadMore = async () => {
         try {
             setLoading(true)
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/Product/product-list/${page}`)
+            const { data } = await axios.get(`/api/v1/Product/product-list/${page}`)
             setLoading(false)
             setProducts([...products, ...data?.products])
         } catch (error) {
@@ -97,7 +97,7 @@ const Products = () => {
                                 <Link key={p._id} to={`/dashboard/admin/product/${p.slug}`} className='product-link'>
 
                                     <div className="card m-2" style={{ width: "18rem" }} >
-                                        <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
+                                        <img src={`/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
                                         <div className="card-body">
                                             <h5 className='card-title'>{p.name}</h5>
                                             <p className='card-text'>{p.description}</p>

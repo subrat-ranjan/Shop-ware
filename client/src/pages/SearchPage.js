@@ -26,7 +26,7 @@ const SearchPage = () => {
     //get all category
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/category/categories`)
+            const { data } = await axios.get(`/api/v1/category/categories`)
             if (data?.success) {
                 setCategories(data?.category)
             }
@@ -47,7 +47,7 @@ const SearchPage = () => {
     const getAllProduct = async () => {
         try {
             setLoading(true)
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/Product/product-list/${page}`)
+            const { data } = await axios.get(`/api/v1/Product/product-list/${page}`)
             setLoading(false)
             setProducts(data?.products)
         } catch (error) {
@@ -76,7 +76,7 @@ const SearchPage = () => {
     //get filtered products
     const filterProduct = async () => {
         try {
-            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/Product/product-filters`, { checked, radio })
+            const { data } = await axios.post(`/api/v1/Product/product-filters`, { checked, radio })
             setProducts(data?.products)
         } catch (error) {
             console.log(error)
@@ -92,7 +92,7 @@ const SearchPage = () => {
                         {values?.results.map((p) => (
                             <div className="card m-2 " key={p._id}  >
 
-                                <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
+                                <img src={`/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
 
                                 <div className="card-body ">
                                     <h5 className='card-title '>{p.name}</h5>

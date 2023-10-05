@@ -17,7 +17,7 @@ const AdminOrders = () => {
     //get orders
     const getorders = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/all-orders`)
+            const { data } = await axios.get(`/api/v1/auth/all-orders`)
             setOrders(data)
         } catch (error) {
             console.log(error)
@@ -84,7 +84,7 @@ const AdminOrders = () => {
                                     {o?.products?.map((p) => (
                                         <div className="row mb-2 p-3 card flex-row" key={p._id} >
                                             <div className="col-md-4 ">
-                                                <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} width="100px" height={"100px"} />
+                                                <img src={`/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} width="100px" height={"100px"} />
 
                                             </div>
                                             <div className="col-md-8">
