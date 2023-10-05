@@ -29,14 +29,14 @@ app.use("/api/v1/product", productRoutes)
 
 
 //rest api
-// app.get('/', (req, res) => {
-//     res.send({
-//         message: "welcome to E-com app.."
-//     })
-// })
-app.use('*', function (req, res) {
-    res.sendFile(path.join(__dirname, './client/build/index.html'));
+app.get('/', (req, res) => {
+    res.send({
+        message: "welcome to E-com app.."
+    })
 })
+// app.use('*', function (req, res) {
+//     res.sendFile(path.join(__dirname, './client/build/index.html'));
+// })
 //PORT
 
 const PORT = process.env.PORT || 8080;
