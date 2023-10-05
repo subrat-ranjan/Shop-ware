@@ -8,6 +8,7 @@ import { Prices } from '../components/Prices'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/cart'
 import "../styles/Homepage.css";
+import { AiOutlineReload } from "react-icons/ai";
 
 
 // import { Link } from 'react-router-dom'
@@ -72,8 +73,8 @@ const HomePage = () => {
     }
 
     useEffect(() => {
-        if (page === 1) return
-        loadMore()
+        if (page === 1) return;
+        loadMore();
     }, [page])
 
     //load more
@@ -84,8 +85,8 @@ const HomePage = () => {
             setLoading(false)
             setProducts([...products, ...data?.products])
         } catch (error) {
-            setLoading(false)
-            console.log(error)
+            console.log(error);
+            setLoading(false);
         }
     }
 
@@ -206,7 +207,22 @@ const HomePage = () => {
                     </div>
                     <div className='m-2 p-3'>
                         {products && products.length < total && (
-                            <button onClick={(e) => { e.preventDefault(); setPage(page + 1) }} className='btn btn-warning'>{loading ? "Loading..." : "Loadmore"}</button>
+                            <button
+                                className="btn loadmore"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setPage(page + 1);
+                                }}
+                            >
+                                {loading ? (
+                                    "Loading ..."
+                                ) : (
+                                    <>
+                                        {" "}
+                                        Loadmore <AiOutlineReload />
+                                    </>
+                                )}
+                            </button>
                         )}
                     </div>
                 </div>

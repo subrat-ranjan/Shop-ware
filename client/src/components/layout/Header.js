@@ -30,7 +30,7 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                         <Link to="/" className="navbar-brand" > <SiShopify> </SiShopify>     Shop_Ware</Link>
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
                             <SearchInput />
                             <li className="nav-item">
                                 <NavLink to="/" className="nav-link "  >Home</NavLink>
@@ -69,10 +69,11 @@ const Header = () => {
                                 </>)
                             }
                             <li className="nav-item">
-                                <Badge count={cart.length} showZero>
-                                    <NavLink to="/cart" className="nav-link" >Cart </NavLink>
-                                </Badge>
-
+                                <NavLink to="/cart" className="nav-link">
+                                    <Badge count={cart?.length} showZero offset={[10, -5]}>
+                                        Cart
+                                    </Badge>
+                                </NavLink>
                             </li>
                         </ul>
 
