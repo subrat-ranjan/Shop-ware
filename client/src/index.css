@@ -38,7 +38,7 @@ line-height: 26px;
 text-transform: uppercase;
 box-shadow: 0 8px 6px -6px gray;
 --webkit-box-shadow:0 8px 6px -6px gray;
-border-bottom:  solid gray !important;
+border-bottom:  solid rgb(155, 147, 147) !important;
 }
 
 .nav-link{
@@ -134,4 +134,7 @@ border-bottom:  solid gray !important;
   padding: 7rem;
 
 }
+}
+.back{
+  background-color: rgba(151, 148, 148, 0.21);
 }
