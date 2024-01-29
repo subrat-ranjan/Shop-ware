@@ -7,7 +7,7 @@ import authRoutes from "./routes/authRoute.js"
 import categoryRoute from "./routes/categoryRoutes.js"
 import productRoutes from "./routes/productRoutes.js"
 import cors from 'cors'
-// import path from "path"//given by node bydefault
+import path from "path"//given by node bydefault
 
 //dot env
 dotenv.config()
@@ -21,7 +21,6 @@ app.use(express.json())
 app.use(morgan('dev'))
 // app.use(express.static(path.join(__dirname, './client/build')))
 
-
 //routes
 app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/category", categoryRoute)
@@ -29,11 +28,11 @@ app.use("/api/v1/product", productRoutes)
 
 
 //rest api
-app.get('/', (req, res) => {
-    res.send({
-        message: "welcome to E-com app.."
-    })
-})
+// app.get('/', (req, res) => {
+//     res.send({
+//         message: "welcome to E-com app.."
+//     })
+// })
 // app.use('*', function (req, res) {
 //     res.sendFile(path.join(__dirname, './client/build/index.html'));
 // })

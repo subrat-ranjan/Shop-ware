@@ -39,7 +39,7 @@ const CategoryProducts = () => {
                             {products?.map((p) => (
                                 <div className="card m-2 " key={p._id}  >
 
-                                    <img src={`${process.env.REACT_APP_API}/api/v1/product//product-photo/${p._id}`} className='card-img-top' alt={p.name} />
+                                    <img src={`/api/v1/product/product-photo/${p._id}`} className='card-img-top' alt={p.name} />
                                     <div className="card-body">
                                         <div className="card-name-price">
                                             <h5 className="card-title">{p.name}</h5>
